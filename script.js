@@ -62,11 +62,12 @@ function createSketch(numOfBoxes) {
                 box.style.backgroundColor = `black`;
             })
         }
-    };
+    }
 
     boxEventListener(numOfBoxes);
 
     function adjustBoxSize(numOfBoxes) {
+
         const containerSize = 720;
         const boxSize = containerSize / numOfBoxes;
 
@@ -77,8 +78,7 @@ function createSketch(numOfBoxes) {
             boxes[i].style.height = `${boxSize}px`;
         }
     }
-
+    
     adjustBoxSize(numOfBoxes);
-
 }
 
