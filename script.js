@@ -1,10 +1,14 @@
-function createBox () {
-    const box = document.createElement('div');
-    box.className = "box";
-        return box;
-}
+
 
 function createMultipleBoxes () {
+
+    function createBox () {
+        const box = document.createElement('div');
+        box.className = "box";
+        box.setAttribute('id','box' + (i + 1));
+            return box;
+    }
+
     const box = document.getElementById('#container');
         myBoxes = [],
         i = 0;
@@ -17,4 +21,5 @@ function createMultipleBoxes () {
 }
 
 createMultipleBoxes();
+
 
