@@ -87,8 +87,11 @@ function createSketch(numOfBoxes) {
     function boxEventListener(numOfBoxes) {
         for (let i = 1; i <= (numOfBoxes*numOfBoxes); i++) {
             let box = document.getElementById('box' + i);
+            let r = randomNum(1, 255);
+            let g = randomNum(1, 255);
+            let b = randomNum(1, 255);
             box.addEventListener('mousemove', () => {
-                box.style.backgroundColor = `black`;
+                box.style.backgroundColor = `rgb(${r}, ${g}, ${b})`;
             })
         }
     }
@@ -109,5 +112,9 @@ function createSketch(numOfBoxes) {
     }
     
     adjustBoxSize(numOfBoxes);
+}
+
+function randomNum(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
