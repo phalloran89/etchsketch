@@ -70,6 +70,7 @@ function createSketch(numOfBoxes) {
             const box = document.createElement('div');
             box.className = "box";
             box.setAttribute('id','box' + (i + 1));
+            box.setAttribute('data-shade', '1');
                 return box;
         }
 
@@ -84,16 +85,31 @@ function createSketch(numOfBoxes) {
 
     createMultipleBoxes(numOfBoxes);
 
+    function computeShade(currentShade) {
+        let red;
+        let green;
+        let blue;
+
+        red = 255 - (25.5 * (currentShade));
+        green = 255 - (25.5 * (currentShade));
+        blue = 255 - (25.5 * (currentShade));
+        
+        let shade = [red, green, blue];
+
+        return shade;
+    }
+
     function boxEventListener(numOfBoxes) {
         for (let i = 1; i <= (numOfBoxes*numOfBoxes); i++) {
             let box = document.getElementById('box' + i);
-            let r = randomNum(1, 255);
-            let g = randomNum(1, 255);
-            let b = randomNum(1, 255);
-            box.addEventListener('mousemove', () => {
-                box.style.backgroundColor = `rgb(${r}, ${g}, ${b})`;
-            })
-        }
+            box.addEventListener('mouseover', () => {
+                currentShade = +e.target.getAttribute('data-shade');
+                let shade = computeShade(currentShade);
+                e.target.setAttribute('data-shade',`${currentShade} + 1`);
+                box.style.backgroundColor = `rgb(${shade[0]}, ${shade[1]},
+                    ${shade[2]})`;            
+            
+        });
     }
 
     boxEventListener(numOfBoxes);
@@ -113,8 +129,23 @@ function createSketch(numOfBoxes) {
     
     adjustBoxSize(numOfBoxes);
 }
-
-function randomNum(min, max) {
-    return Math.floor(Math.random() * (max - min + 1)) + min;
 }
+
+// function randomNum(min, max) {
+//     return Math.floor(Math.random() * (max - min + 1)) + min;
+// }
+
+// }
+
+// function boxEventListener(numOfBoxes) {
+//     for (let i = 1; i <= (numOfBoxes*numOfBoxes); i++) {
+//         let box = document.getElementById('box' + i);
+//         let r = randomNum(1, 255);
+//         let g = randomNum(1, 255);
+//         let b = randomNum(1, 255);
+//         box.addEventListener('mousemove', () => {
+//             box.style.backgroundColor = `rgb(${r}, ${g}, ${b})`;
+//         })
+//     }
+// }
 
