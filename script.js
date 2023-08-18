@@ -1,6 +1,21 @@
 document.addEventListener('DOMContentLoaded', () => {
-    numOfBoxes = 
-    prompt("Welcome to Etch-A-Sketch. How big would you like your grid?");
+    let numOfBoxes;
+    while (true) {
+        numOfBoxes = prompt(`Welcome to Etch-A-Sketch.`
+        + ` How big would you like your grid?` + ` Please enter a number` + 
+        ` between 1 and 100.`);
+        if (numOfBoxes === null) {
+            return; 
+        }
+
+        if (isNaN(numOfBoxes)) {
+            alert("That is not a number, please try again.");
+        } else if (numOfBoxes > 100) {
+            alert("Sorry, 100 is the maximum grid size supported.");
+        } else {
+            break; 
+        }
+    }
     createSketch(numOfBoxes);
 })
 
@@ -24,8 +39,22 @@ resetButton.addEventListener('click', resetPrompt);
 
 function resetPrompt() {
     clearSketch();
-    numOfBoxes = 
-    prompt("How big would you like your grid? Please enter a number.");
+    let numOfBoxes;
+    while (true) {
+        numOfBoxes = prompt(`How big would you like your grid?` 
+        + ` Please enter a number between 1 and 100.`);
+        if (numOfBoxes === null) {
+            return; 
+        }
+
+        if (isNaN(numOfBoxes)) {
+            alert("That is not a number, please try again.");
+        } else if (numOfBoxes > 100) {
+            alert("Sorry, 100 is the maximum grid size supported.");
+        } else {
+            break; 
+        }
+    }
     createSketch(numOfBoxes);
 };
 
